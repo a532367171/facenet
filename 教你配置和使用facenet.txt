@@ -1,0 +1,46 @@
+https://blog.csdn.net/hua18513115569/article/details/78409245
+
+教你配置和使用facenet
+
+想学tensorflow，跑了自带的mnist例子，感觉太简单，想玩玩高端的。 
+听说利用tensorflow训练出的facenet在人脸识别方面非常厉害，于是就到github上搜了一下，发现当前主流的开源人脸识别项目有facenet和openface两种，虽然openface的star数是facenet的两倍，但就是奔着facenet来的不纠结 。 
+配置facenet要经过以下几步：
+
+第一步： 安装anaconda
+
+https://www.anaconda.com/download/
+
+第二步：安装tensorflow
+
+pip install tensorflow
+1
+第三步：下载facenet
+
+https://github.com/davidsandberg/facenet
+
+第四步：配置python版的opencv
+
+从下面网址找一个适合自己python版本的opencv的whl文件下载
+
+https://www.lfd.uci.edu/~gohlke/pythonlibs/#opencv 
+下载下来发现被骗了。。是zip后缀的文件，怒改后缀名zip为whl，然后安装
+
+pip install 路径\XXX.whl
+1
+大功告成，下面就是见证奇迹的时刻来临：
+
+第五步：下载训练好的网络模型
+
+facenet提供了两个预训练模型，分别是基于CASIA-WebFace和MS-Celeb-1M人脸库训练的，链接为：
+
+Model name	LFW accuracy	Training dataset	Architecture
+20170511-185253	0.987	CASIA-WebFace	Inception ResNet v1
+20170512-110547	0.992	MS-Celeb-1M	Inception ResNet v1
+不过这两个模型存在谷歌云盘上，如果同志们有需要可以留言附上自己的邮箱
+
+第五步：运行人脸比对例子
+
+facenet可以直接比对两个人脸经过它的网络映射之后的欧氏距离，运行程序为facenet-master\src\compare.py。 
+-1、在compare.py所在目录下放入要比对的文件1.jpg和2.jpg，打开cmd命令行窗口 
+-2、cd到compare.py所在路径 
+-3、输入 python compare.py 20170511-185253 1.jpg 2.jpg
